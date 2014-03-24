@@ -19,3 +19,4 @@ from .messages import Messages
 from .stats import Stats
 from .unsubscribes import Unsubscribes
 from .validations import EmailValidations
+from .routes import Routes
