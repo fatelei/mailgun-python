@@ -11,7 +11,7 @@ from mailgun import exceptions
 
 class MailGunClient(object):
 
-    def __init__(self, api_url, api_domain, api_key):
+    def __init__(self, api_url=None, api_domain=None, api_key=None):
         """
         :param api_url: mailgun api base url
         :param api_domain: mailgun api domain
@@ -21,7 +21,7 @@ class MailGunClient(object):
         self.api_domain = api_domain
         self.api_key = api_key
 
-    def execute(self, method, url, parameters):
+    def execute(self, method, url, **parameters):
         """
         execute mailgun api request
         :param method: http method
@@ -55,34 +55,44 @@ class MailGunClient(object):
                 raise exceptions.ServerErrorsException(
                     code=status_code, msg=resp.text)
 
-    def get(self, api, parameters):
+    def generate_api_url(self, api):
+        """
+        generate api
+        """
+        if self.api_domain is not None:
+            url = "{0}/{1}/{2}".format(self.api_url, self.api_domain, api)
+        else:
+            url = "{0}/{1}".format(self.api_url, api)
+        return url
+
+    def get(self, api, **parameters):
         """
         :param api: api type
         :param parameters: api parameters
         """
-        url = "{0}/{1}".format(self.api_url, api)
+        url = self.generate_api_url(api)
         self.execute("get", url, parameters)
 
-    def post(self, api, parameters):
+    def post(self, api, **parameters):
         """
         :param api: api type
         :param parameters: api parameters
         """
-        url = "{0}/{1}".format(self.api_url, api)
+        url = self.generate_api_url(api)
         self.execute("post", url, parameters)
 
-    def delete(self, api, parameters):
+    def delete(self, api, **parameters):
         """
         :param api: api type
         :param parameters: api parameters
         """
-        url = "{0}/{1}".format(self.api_url, api)
+        url = self.generate_api_url(api)
         self.execute("delete", url, parameters)
 
-    def put(self, api, parameters):
+    def put(self, api, **parameters):
         """
         :param api: api type
         :param parameters: api parameters
         """
-        url = "{0}/{1}".format(self.api_url, api)
+        url = self.generate_api_url(api)
         self.execute("put", url, parameters)
