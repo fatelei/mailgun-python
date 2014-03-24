@@ -1,7 +1,7 @@
 #!/usr/bin/python
-#-*-coding: ;utf8-*-
+#-*-coding: utf8-*-
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="mailgun",
