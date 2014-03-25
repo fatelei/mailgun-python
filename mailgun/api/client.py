@@ -30,7 +30,7 @@ class MailGunClient(object):
         """
         try:
             func = getattr(requests, method)
-            resp = func(url, data=parameters)
+            resp = func(url, auth=("api": self.api_key), data=parameters)
             self.response(resp)
         except Exception as e:
             raise e
