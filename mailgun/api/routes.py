@@ -7,7 +7,7 @@ mailgun routers api
 from .client import MailGunClient
 
 
-class Routes(MailGunClient):
+class APIRoutes(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(Routers, self).__init__(

@@ -7,7 +7,7 @@ mailgun campaigns api
 from .client import MailGunClient
 
 
-class Campaigns(MailGunClient):
+class APICampaigns(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(Campaigns, self).__init__(

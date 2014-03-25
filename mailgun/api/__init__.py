@@ -10,13 +10,14 @@ usage:
     >>> msg.send_message()
 """
 
-from .bounces import Bounces
-from .campaigns import Campaigns
-from .complaints import Complaints
-from .domains import Domains
-from .events import Events
-from .messages import Messages
-from .stats import Stats
-from .unsubscribes import Unsubscribes
-from .validations import EmailValidations
-from .routes import Routes
+from .bounces import APIBounces
+from .campaigns import APICampaigns
+from .complaints import APIComplaints
+from .domains import APIDomains
+from .events import APIEvents
+from .messages import APIMessages
+from .stats import APIStats
+from .unsubscribes import APIUnsubscribes
+from .validations import APIEmailValidations
+from .routes import APIRoutes
+from .mailinglists import APIMailingLists

@@ -7,7 +7,7 @@ mailgun stats api
 from .client import MailGunClient
 
 
-class Stats(MailGunClient):
+class APIStats(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(Stats, self).__init__(

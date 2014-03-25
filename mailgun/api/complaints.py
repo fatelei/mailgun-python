@@ -7,7 +7,7 @@ mailgun complaints api
 from .client import MailGunClient
 
 
-class Complaints(MailGunClient):
+class APIComplaints(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(Complaints, self).__init__(

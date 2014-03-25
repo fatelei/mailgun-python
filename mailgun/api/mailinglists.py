@@ -7,7 +7,7 @@ mailgun mailing lists api
 from .client import MailGunClient
 
 
-class MailingLists(MailGunClient):
+class APIMailingLists(MailGunClient):
 
     def __init__(self, api_url=None, api_key=None):
         super(MailingLists, self).__init__(

@@ -13,5 +13,7 @@ usage:
 	>>> message.generate()
 """
 
+from .event import Event
+from .message import Message
 
 

@@ -7,7 +7,7 @@ mailgun domains api
 from .client import MailGunClient
 
 
-class Domains(MailGunClient):
+class APIDomains(MailGunClient):
 
     def __init__(self, api_url=None, api_key=None):
         super(Domains, self).__init__(

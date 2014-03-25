@@ -7,7 +7,7 @@ mailgun email validation api
 from .client import MailGunClient
 
 
-class EmailValidations(MailGunClient):
+class APIEmailValidations(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(EmailValidations, self).__init__(

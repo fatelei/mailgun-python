@@ -7,7 +7,7 @@ mailgun unsubscribe api
 from .client import MailGunClient
 
 
-class Unsubscribes(MailGunClient):
+class APIUnsubscribes(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(Unsubscribes, self).__init__(

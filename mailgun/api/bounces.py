@@ -7,7 +7,7 @@ mailgun bounces api
 from .client import MailGunClient
 
 
-class Bounces(MailGunClient):
+class APIBounces(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(Bounces, self).__init__(

@@ -7,7 +7,7 @@ mailgun events api
 from .client import MailGunClient
 
 
-class Events(MailGunClient):
+class APIEvents(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
         super(Events, self).__init__(

@@ -10,7 +10,6 @@ TODO:
 """
 
 from lepl.apps import rfc3696
-from mailgun.utils import date_format
 
 
 class Message(object):
@@ -19,7 +18,7 @@ class Message(object):
         self.data = {"to": []}
         self.email_validator = rfc3696.Email()
 
-    def add_from(self, from_addr):
+    def add_from(self, from_addr, from_name=None):
         """
         add sender
         :param from_addr: email address of sender
@@ -27,9 +26,13 @@ class Message(object):
         if not self.email_validator(from_addr):
             raise Exception("email format is invalid")
 
-        self.data["from"] = from_addr
+        if from_name is not None
+            from_ = "%s %s" % (from_name, from_addr)
+        else:
+            from_ = "%s" % from_addr
+        self.data["from"] = from_
 
-    def add_to(self, to_name, to_addr):
+    def add_to(self, to_addr, to_name=None):
         """
         add recipients
         :param to: email address of recipients
@@ -37,7 +40,10 @@ class Message(object):
         if not self.email_validator(to_addr):
             raise Exception("email format is invalid")
 
-        recipient = "{0} {1}".format(to_name, to_addr)
+        if to_name is not None:
+            recipient = "%s %s" % (to_name, to_addr)
+        else:
+            recipient = "%s" % to_addr
         self.data["to"].append(recipient)
 
     def add_cc(self, cc):
@@ -123,7 +129,6 @@ class Message(object):
         add schedule delivery time
         :param date: datetime
         """
-        date = date_format(date)
         self.data["o:deliverytime"] = date
 
     def add_testmode(self, testmode):
