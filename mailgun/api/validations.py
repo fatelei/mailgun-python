@@ -10,7 +10,7 @@ from .client import MailGunClient
 class APIEmailValidations(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
-        super(EmailValidations, self).__init__(
+        super(APIEmailValidations, self).__init__(
             api_url=api_url, api_domain=api_domain, api_key=api_key)
 
     def validate(self, address):

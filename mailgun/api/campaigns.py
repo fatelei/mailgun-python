@@ -10,7 +10,7 @@ from .client import MailGunClient
 class APICampaigns(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
-        super(Campaigns, self).__init__(
+        super(APICampaigns, self).__init__(
             api_url=api_url, api_domain=api_domain, api_key=api_key)
 
     def get_campaigns(self, limit=100, skip=0):

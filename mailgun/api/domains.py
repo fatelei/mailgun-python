@@ -10,7 +10,7 @@ from .client import MailGunClient
 class APIDomains(MailGunClient):
 
     def __init__(self, api_url=None, api_key=None):
-        super(Domains, self).__init__(
+        super(APIDomains, self).__init__(
             api_url=api_url, api_domain=None, api_key=api_key)
 
     def get_domains(self, limit=100, skip=0):

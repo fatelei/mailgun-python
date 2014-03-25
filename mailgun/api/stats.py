@@ -10,7 +10,7 @@ from .client import MailGunClient
 class APIStats(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
-        super(Stats, self).__init__(
+        super(APIStats, self).__init__(
             api_url=api_url, api_domain=api_domain, api_key=api_key)
 
     def get_stats(self, event, start_date, limit=100, skip=0):

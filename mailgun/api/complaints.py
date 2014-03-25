@@ -10,7 +10,7 @@ from .client import MailGunClient
 class APIComplaints(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
-        super(Complaints, self).__init__(
+        super(APIComplaints, self).__init__(
             api_url=api_url, api_domain=api_domain, api_key=api_key)
 
     def get_complaints(self, limit=100, skip=0):

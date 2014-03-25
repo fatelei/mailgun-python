@@ -26,8 +26,8 @@ class Message(object):
         if not self.email_validator(from_addr):
             raise Exception("email format is invalid")
 
-        if from_name is not None
-            from_ = "%s %s" % (from_name, from_addr)
+        if from_name is not None:
+            from_ = "%s <%s>" % (from_name, from_addr)
         else:
             from_ = "%s" % from_addr
         self.data["from"] = from_
@@ -41,7 +41,7 @@ class Message(object):
             raise Exception("email format is invalid")
 
         if to_name is not None:
-            recipient = "%s %s" % (to_name, to_addr)
+            recipient = "%s <%s>" % (to_name, to_addr)
         else:
             recipient = "%s" % to_addr
         self.data["to"].append(recipient)
@@ -195,7 +195,6 @@ class Message(object):
         """
         generate parameters
         """
-        if len(self.data["to"]) > 1:
-            self.data["to"] = ",".join(self.data["to"])
+        self.data["to"] = ",".join(self.data["to"])
 
         return self.data

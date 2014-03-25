@@ -30,7 +30,7 @@ class MailGunClient(object):
         """
         try:
             func = getattr(requests, method)
-            resp = func(url, auth=("api": self.api_key), data=parameters)
+            resp = func(url, auth=("api", self.api_key), data=parameters)
             self.response(resp)
         except Exception as e:
             raise e
@@ -71,7 +71,7 @@ class MailGunClient(object):
         :param parameters: api parameters
         """
         url = self.generate_api_url(api)
-        self.execute("get", url, parameters)
+        self.execute("get", url, **parameters)
 
     def post(self, api, **parameters):
         """
@@ -79,7 +79,7 @@ class MailGunClient(object):
         :param parameters: api parameters
         """
         url = self.generate_api_url(api)
-        self.execute("post", url, parameters)
+        self.execute("post", url, **parameters)
 
     def delete(self, api, **parameters):
         """
@@ -87,7 +87,7 @@ class MailGunClient(object):
         :param parameters: api parameters
         """
         url = self.generate_api_url(api)
-        self.execute("delete", url, parameters)
+        self.execute("delete", url, **parameters)
 
     def put(self, api, **parameters):
         """
@@ -95,4 +95,4 @@ class MailGunClient(object):
         :param parameters: api parameters
         """
         url = self.generate_api_url(api)
-        self.execute("put", url, parameters)
+        self.execute("put", url, **parameters)

@@ -11,4 +11,8 @@ usage:
 
 """
 
-from . import exceptions
+from .exceptions import BadRequestException
+from .exceptions import NotFoundException
+from .exceptions import RequestFailedException
+from .exceptions import ServerErrorsException
+from .exceptions import UnauthorizeException

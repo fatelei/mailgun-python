@@ -10,7 +10,7 @@ from .client import MailGunClient
 class APIMessages(MailGunClient):
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
-        super(Messages, self).__init__(
+        super(APIMessages, self).__init__(
             api_url=api_url, api_domain=api_domain, api_key=api_key)
 
     def send_message(self, **parameters):
