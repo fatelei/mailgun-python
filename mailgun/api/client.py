@@ -41,7 +41,7 @@ class MailGunClient(object):
         """
         status_code = resp.status_code
         if status_code == 200:
-            return resp.json()
+            return resp
         else:
             if status_code == 400:
                 raise exceptions.BadRequestException(msg=resp.text)
