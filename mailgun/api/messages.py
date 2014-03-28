@@ -16,13 +16,13 @@ class APIMessages(MailGunClient):
     def send_message(self, **parameters):
         """
         send normal message
-        :param parameters: request parameters
+        @param parameters: request parameters
         """
         return self.post("messages", **parameters)
 
     def send_mime_message(self, **parameters):
         """
         send mime message
-        :param parameters: request parameters
+        @param parameters: request parameters
         """
         return self.post("message.mime", **parameters)

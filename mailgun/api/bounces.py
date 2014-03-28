@@ -16,8 +16,8 @@ class APIBounces(MailGunClient):
     def get_bounces(self, limit=100, skip=0):
         """
         fetches the list of bounces
-        :param limit: maximum number of records to return
-        :param skip: number of records to skip
+        @param limit: maximum number of records to return
+        @param skip: number of records to skip
         """
         parameters = {"limit": limit,
                       "skip": skip}
@@ -26,14 +26,14 @@ class APIBounces(MailGunClient):
     def get_bounce(self, address):
         """
         fetches a single bounce event by a given email address
-        :param address: email address
+        @param address: email address
         """
         return self.get("bounces/" + address)
 
     def add_to_bounces(self, address):
         """
         adds a permanent bounce to the bounces table
-        :param address: email address
+        @param address: email address
         """
         parameters = {"address": address,
                       "code": 550}
@@ -42,6 +42,6 @@ class APIBounces(MailGunClient):
     def remove_from_bounces(self, address):
         """
         “Clears” a given bounce event
-        :param address: email address
+        @param address: email address
         """
         return self.delete("bounces/" + address)

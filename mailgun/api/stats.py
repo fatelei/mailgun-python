@@ -16,10 +16,10 @@ class APIStats(MailGunClient):
     def get_stats(self, event, start_date, limit=100, skip=0):
         """
         returns a list of event stat items
-        :param event: name of the event
-        :param start_date: the date to receive the stats starting from, format YYYY-MM-DD
-        :param limit: maximum number of records to return
-        :param skip: number of records to skip
+        @param event: name of the event
+        @param start_date: the date to receive the stats starting from, format YYYY-MM-DD
+        @param limit: maximum number of records to return
+        @param skip: number of records to skip
         """
         parameters = {"event": event,
                       "start_date": start_date,
@@ -30,6 +30,6 @@ class APIStats(MailGunClient):
     def remove_tag_counters(self, tag):
         """
         deletes all counters for particular tag and the tag itself
-        :param tag: name of the tag
+        @param tag: name of the tag
         """
         return self.delete("tags/" + tag)

@@ -16,8 +16,9 @@ class APIComplaints(MailGunClient):
     def get_complaints(self, limit=100, skip=0):
         """
         fetches the list of complaints
-        :param limit: maximum number of records to return
-        :param skip: number of records to skip
+        
+        @param limit: maximum number of records to return
+        @param skip: number of records to skip
         """
         parameters = {"limit": limit,
                       "skip": skip}
@@ -26,14 +27,16 @@ class APIComplaints(MailGunClient):
     def get_complaint(self, address):
         """
         fetches a single spam complaint by a given email address
-        :param address: email address
+        
+        @param address: email address
         """
         return self.get("complaints/" + address)
 
     def add_to_complaints(self, address):
         """
         adds an address to the complaints table
-        :param address: email address
+        
+        @param address: email address
         """
         parameters = {"address": address}
         return self.post("complaints", **parameters)
@@ -41,6 +44,7 @@ class APIComplaints(MailGunClient):
     def remove_from_complaints(self, address):
         """
         removes a given spam complaint
-        :param address: email address
+        
+        @param address: email address
         """
         return self.delete("complaints/" + address)

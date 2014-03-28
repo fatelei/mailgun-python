@@ -16,8 +16,8 @@ class APIUnsubscribes(MailGunClient):
     def get_unsubscribes(self, limit=100, skip=0):
         """
         fetches the list of unsubscribes
-        :param limit: maximum number of records to return
-        :param skip: number of records to skip
+        @param limit: maximum number of records to return
+        @param skip: number of records to skip
         """
         parameters = {"limit": limit,
                       "skip": skip}
@@ -26,21 +26,21 @@ class APIUnsubscribes(MailGunClient):
     def get_unsubscribe(self, address):
         """
         retreives a single unsubscribe record
-        :param address: email address
+        @param address: email address
         """
         return self.get("unsubscribes/" + address)
 
     def remove_from_unsubscribe(self, address):
         """
         removes an address from the unsubscribes table
-        :param address: email address
+        @param address: email address
         """
         return self.delete("unsubscribes/" + address)
 
     def add_to_unsubscribe(self, address):
         """
         adds address to unsubscribed table
-        :param address: email address
+        @param address: email address
         """
         parameters = {"address": address,
                       "tag": "*"}

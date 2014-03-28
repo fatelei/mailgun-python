@@ -16,8 +16,8 @@ class APIDomains(MailGunClient):
     def get_domains(self, limit=100, skip=0):
         """
         return a list of domains
-        :param limit: maximum number of records to return
-        :param skip: number of records to skip
+        @param limit: maximum number of records to return
+        @param skip: number of records to skip
         """
         parameters = {"limit": limit, "skip": skip}
         return self.get("domains", **parameters)
@@ -28,9 +28,9 @@ class APIDomains(MailGunClient):
     def create_new_domain(self, name, smtp_password, wildcard):
         """
         create new domain
-        :param name: name of the domain
-        :param smtp_password: password for SMTP authentication
-        :param wildcard: true or false Determines whether the domain will accept email for sub-domains.
+        @param name: name of the domain
+        @param smtp_password: password for SMTP authentication
+        @param wildcard: true or false Determines whether the domain will accept email for sub-domains.
         """
         parameters = {"name": name,
                       "smtp_password": smtp_password,
@@ -40,16 +40,16 @@ class APIDomains(MailGunClient):
     def remove_domain(self, domain):
         """
         remove domain
-        :param domain: name of the domain
+        @param domain: name of the domain
         """
         return self.delete("domains/" + domain)
 
     def get_domain_credentials(self, domain, limit=100, skip=0):
         """
         returns a list of SMTP credentials for the defined domain
-        :param domain: name of the domain
-        :param limit: maximum number of records to return
-        :param skip: number of records to skip
+        @param domain: name of the domain
+        @param limit: maximum number of records to return
+        @param skip: number of records to skip
         """
         parameters = {"limit": limit, "skip": skip}
         return self.get("domains/" + domain, **parameters)
@@ -57,9 +57,9 @@ class APIDomains(MailGunClient):
     def create_domain_credentials(self, domain, login, password):
         """
         creates a new set of SMTP credentials for the defined domain.
-        :param domain: name of the domain
-        :param login: the user name, for example bob.bar
-        :param password: a password for the SMTP credentials. (Length Min 5, Max 32
+        @param domain: name of the domain
+        @param login: the user name, for example bob.bar
+        @param password: a password for the SMTP credentials. (Length Min 5, Max 32
         """
         if len(password) < 5 or len(password) > 32:
             raise Exception("password's length must be between 5 and 22")
@@ -70,7 +70,7 @@ class APIDomains(MailGunClient):
     def remove_domain_credentials(self, domain, login):
         """
         deletes the defined SMTP credentials
-        :param domain: name of the domain
-        :param login: the user name
+        @param domain: name of the domain
+        @param login: the user name
         """
         return self.delete("domains/" + domain + "/credentials/" + login)

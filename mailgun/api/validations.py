@@ -16,7 +16,7 @@ class APIEmailValidations(MailGunClient):
     def validate(self, address):
         """
         given an arbitrary address, validates address based off defined checks
-        :param address: email address
+        @param address: email address
         """
         parameters = {"address": address}
         return self.get("address/validate", **parameters)
@@ -26,7 +26,7 @@ class APIEmailValidations(MailGunClient):
         parses a delimiter separated list of email addresses into two lists:
         parsed addresses and unparsable portions
 
-        :param addresses: list of addresses
+        @param addresses: list of addresses
         """
         parameters = {}
         parameters["addresses"] = ",".join(addresses)
