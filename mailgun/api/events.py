@@ -9,12 +9,12 @@ from .client import MailgunClient
 
 class APIEvents(MailgunClient):
 
-	"""The events api
-	"""
+    """The events api
+    """
 
     def __init__(self, api_url=None, api_domain=None, api_key=None):
-    	"""Init the class
-    	"""
+        """Init the class
+        """
         super(APIEvents, self).__init__(
             api_url=api_url, api_domain=api_domain, api_key=api_key)
 
