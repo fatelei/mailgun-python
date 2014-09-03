@@ -4,10 +4,10 @@
 mailgun mailing lists api
 """
 
-from .client import MailGunClient
+from .client import MailgunClient
 
 
-class APIMailingLists(MailGunClient):
+class APIMailingLists(MailgunClient):
 
     """The mailing list api
     """
