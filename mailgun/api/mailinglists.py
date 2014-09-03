@@ -9,16 +9,22 @@ from .client import MailGunClient
 
 class APIMailingLists(MailGunClient):
 
+    """The mailing list api
+    """
+
     def __init__(self, api_url=None, api_key=None):
+        """Init the class
+        """
         super(APIMailingLists, self).__init__(
             api_url=api_url, api_key=api_key)
 
     def get_mailing_lists(self, address=None, limit=100, skip=0):
-        """
-        returns a list of mailing lists under your account
-        @param address: find a mailing list by it’s address (optional)
-        @param limit: maximum number of records to return
-        @param skip: number of records to skip
+        """Returns a list of mailing lists under your account
+
+        Args:
+            address: Find a mailing list by it’s address (optional)
+            limit: The maximum number of records to return
+            skip: The number of records to skip
         """
         parameters = {"limit": limit, "skip": skip}
         if address is not None:
@@ -27,19 +33,25 @@ class APIMailingLists(MailGunClient):
         return self.get("lists", **parameters)
 
     def get_mailing_list(self, address):
-        """
-        returns a single mailing list by a given address
-        @param address: email address
+        """Returns a single mailing list by a given address
+
+        Args:
+            address: The email address
         """
         return self.get("lists/" + address)
 
-    def add_to_mailing_lists(self, address, access_level="readonly", name=None, description=None):
-        """
-        creates a new mailing list
-        @param address: a valid email address for the mailing list
-        @param name: mailing list name (optional)
-        @param description: a description (optional)
-        @param access_level: list access level, one of: readonly (default), members, everyone
+    def add_to_mailing_lists(self,
+                             address,
+                             access_level="readonly",
+                             name=None,
+                             description=None):
+        """Creates a new mailing list
+
+        Args:
+            address: A valid email address for the mailing list
+            name: The mailing list name (optional)
+            description: A description (optional)
+            access_level: The list access level, one of: readonly (default), members, everyone
         """
         parameters = {"address": address, "access_level": access_level}
 
@@ -51,13 +63,19 @@ class APIMailingLists(MailGunClient):
 
         return self.post("lists", **parameters)
 
-    def update_mailing_list(self, old_address, new_address=None, access_level="readonly", name=None, description=None):
-        """
-        updates a new mailing list
-        @param address: a valid email address for the mailing list
-        @param name: mailing list name (optional)
-        @param description: a description (optional)
-        @param access_level: list access level, one of: readonly (default), members, everyone
+    def update_mailing_list(self,
+                            old_address,
+                            new_address=None,
+                            access_level="readonly",
+                            name=None,
+                            description=None):
+        """Updates a new mailing list
+
+        Args:
+            address: A valid email address for the mailing list
+            name: The mailing list name (optional)
+            description: A description (optional)
+            access_level: The list access level, one of: readonly (default), members, everyone
         """
         parameters = {"access_level": access_level}
 
@@ -73,40 +91,54 @@ class APIMailingLists(MailGunClient):
         return self.put("lists/" + old_address, **parameters)
 
     def remove_from_mailing_lists(self, address):
-        """
-        deletes a mailing list
-        @param address: eamil address
+        """Deletes a mailing list
+
+        Args:
+            address: The eamil address
         """
         return self.delete("lists/" + address)
 
-    def get_members_from_mailing_list(self, address, subscribed, limit=100, skip=0):
-        """
-        fetches the list of mailing list members
-        @param address: email address
-        @param subscribed: yes to list subscribed, no for unsubscribed, list all if not set
-        @param limit: maximum number of records to return
-        @param skip: number of records to skip
+    def get_members_from_mailing_list(self,
+                                      address,
+                                      subscribed,
+                                      limit=100,
+                                      skip=0):
+        """Fetches the list of mailing list members
+
+        Args:
+            address: The email address
+            subscribed: Yes to list subscribed, no for unsubscribed, list all if not set
+            limit: The maximum number of records to return
+            skip: The number of records to skip
         """
         parameters = {"subscribed": subscribed, "limit": limit, "skip": skip}
         return self.get("lists/" + address + "/members", **parameters)
 
     def get_member_from_mailing_list(self, address, member_address):
-        """
-        retrieves a mailing list member
-        @param address: email address
-        @param member_address: member's email address
+        """Retrieves a mailing list member
+
+        Args:
+            address: The email address
+            member_address: The member's email address
         """
         return self.get("lists/" + address + "/members/" + member_address)
 
-    def add_member_to_mailing_list(self, address, memeber_address, name=None, vars=None, subscribed="yes", upset="yes"):
-        """
-        adds a member to the mailing list
-        @param address: email address of the mailing list
-        @param member_address: valid email address specification
-        @param name: optinal member name
-        @param vars: JSON-encoded dictionary string with arbitrary parameters, e.g. {"gender":"female","age":27}
-        @param subscribed: yes to add as subscribed (default), no as unsubscribed
-        @param upset: yes to update member if present, no to raise error in case of a duplicate member (default)
+    def add_member_to_mailing_list(self,
+                                   address,
+                                   memeber_address,
+                                   name=None,
+                                   vars=None,
+                                   subscribed="yes",
+                                   upset="yes"):
+        """Adds a member to the mailing list
+
+        Args:
+            address: The email address of the mailing list
+            member_address: A valid email address specification
+            name: A optinal member name
+            vars: JSON-encoded dictionary string with arbitrary parameters, e.g. {"gender":"female","age":27}
+            subscribed: Yes to add as subscribed (default), no as unsubscribed
+            upset: Yes to update member if present, no to raise error in case of a duplicate member (default)
         """
         parameters = {"address": memeber_address,
                       "subscribed": subscribed, "upset": upset}
@@ -119,15 +151,23 @@ class APIMailingLists(MailGunClient):
 
         return self.post("lists/" + address + "/members", **parameters)
 
-    def update_member_in_mailing_list(self, address, member_address, new_member_address=None, name=None, vars=None, subscribed="yes"):
-        """
-        updates a mailing list member with given properties. Won’t touch the property if it’s not passed in
-        @param address: email address of the mailing list
-        @param member_address: old member address
-        @param new_member_address: new member address (optional)
-        @param name: optional member name
-        @param vars: JSON-encoded dictionary string with arbitrary parameters, e.g. {"gender":"female","age":27}
-        @param subscribed: yes to add as subscribed (default), no as unsubscribed
+    def update_member_in_mailing_list(self,
+                                      address,
+                                      member_address,
+                                      new_member_address=None,
+                                      name=None,
+                                      vars=None,
+                                      subscribed="yes"):
+        """Updates a mailing list member with given properties.
+        Won’t touch the property if it’s not passed in
+
+        Args:
+            address: The email address of the mailing list
+            member_address: An old member address
+            new_member_address: A new member address (optional)
+            name: An optional member name
+            vars: JSON-encoded dictionary string with arbitrary parameters, e.g. {"gender":"female","age":27}
+            subscribed: Yes to add as subscribed (default), no as unsubscribed
         """
         parameters = {"subscribed": subscribed}
 
@@ -140,12 +180,14 @@ class APIMailingLists(MailGunClient):
         if vars is not None:
             parameters["vars"] = vars
 
-        return self.put("lists/" + address + "/members/" + member_address, **parameters)
+        url = "lists/" + address + "/members/" + member_address
+        return self.put(url, **parameters)
 
     def remove_member_from_mailing_list(self, address, member_address):
-        """
-        delete a mailing list member
-        @param address: email address of the mailing list
-        @param member_address: email address of tha mailing list member
+        """Delete a mailing list member
+
+        Args:
+            address: An email address of the mailing list
+            member_address: An email address of tha mailing list member
         """
         return self.delete("lists/" + address + "/members/" + member_address)

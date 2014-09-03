@@ -1,9 +1,9 @@
 #-*-coding: utf8-*-
 
 """
-mailgun api
+Mailgun api
 
-usage:
+Usage:
     
     >>> from mailgun.api import Messages
     >>> msg = Messages(api_url=api_url, api_domain=api_domain, api_key=api_key)
@@ -21,3 +21,17 @@ from .unsubscribes import APIUnsubscribes
 from .validations import APIEmailValidations
 from .routes import APIRoutes
 from .mailinglists import APIMailingLists
+
+__all__ = [
+    'APIBounces',
+    'APICampaigns',
+    'APIComplaints',
+    'APIDomains',
+    'APIEvents',
+    'APIMessages',
+    'APIStats',
+    'APIUnsubscribes',
+    'APIEmailValidations',
+    'APIRoutes',
+    'APIMailingLists'
+]

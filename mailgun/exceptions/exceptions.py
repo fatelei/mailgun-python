@@ -3,10 +3,15 @@
 
 class MGBaseException(Exception):
 
+    """The base class of mailgun's exception
+
+    Attributes:
+        code: The status code of HTTP
+        msg: The detail of error message
+    """
+
     def __init__(self, code=None, msg=None):
-        """
-        :param code: http status code
-        :param msg: detail error message
+        """Init the class
         """
         self.code = code
         self.msg = msg

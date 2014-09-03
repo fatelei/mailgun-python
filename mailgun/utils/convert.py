@@ -11,9 +11,10 @@ from email.utils import formatdate
 
 
 def date_format(date):
-    """
-    convert date to mailgun format
-    @param date: python datetime format
+    """Convert date to mailgun format
+    
+	Args:
+    	date: Python datetime format
     """
     rfc_date = formatdate(time.mktime(date.timetuple()))
     return rfc_date

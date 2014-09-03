@@ -1,7 +1,7 @@
 #-*-coding: utf8-*-
 
 """
-mailgun sdk for python
+Mailgun sdk for python
 
 usage:
 
