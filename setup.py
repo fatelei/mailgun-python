@@ -1,7 +1,18 @@
 #!/usr/bin/python
-#-*-coding: utf8-*-
+# -*-coding: utf8-*-
 
-from setuptools import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
+packages = [
+	'mailgun',
+	'mailgun.api',
+	'mailgun.exceptions',
+	'mailgun.parameter',
+	'mailgun.utils'
+]
 
 setup(
     name="mailgun",
@@ -10,6 +21,6 @@ setup(
     author_email="fatelei@gmail.com",
     description="mailgun sdk for python",
     install_requires=["requests", "lepl"],
-    packages=["mailgun"],
-    package_dir={".": "mailgun"}
+    packages=packages,
+    package_dir={"mailgun": "mailgun"}
 )

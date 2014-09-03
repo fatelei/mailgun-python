@@ -16,3 +16,11 @@ from .exceptions import NotFoundException
 from .exceptions import RequestFailedException
 from .exceptions import ServerErrorsException
 from .exceptions import UnauthorizeException
+
+__all__ = [
+    'BadRequestException',
+    'NotFoundException',
+    'RequestFailedException',
+    'ServerErrorsException',
+    'UnauthorizeException'    
+]
