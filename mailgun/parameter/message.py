@@ -9,6 +9,8 @@ TODO:
     add_mime_message
 """
 
+import os.path
+from mimetypes import guess_type
 from lepl.apps import rfc3696
 
 
@@ -18,7 +20,7 @@ class Message(object):
 
     Attributes:
         data: A dict contains the detail info of message
-        email_validator: An email validator
+        email_validator: An email valdiator
     """
 
     def __init__(self):
@@ -103,21 +105,36 @@ class Message(object):
         """
         self.data["html"] = html
 
-    def add_attachment(self, attachment):
+    def add_attachment(self, attachment, name=None, content_type=None):
         """Add attachment
 
         Args:
             attachment: File attachment
+            name: Attachment name
+            content_type: Attachment content type
         """
-        pass
+        if not self.data.get('files'):
+            self.data['files'] = []
+
+        if not name:
+            name = os.path.basename(attachment.name)
+        if not content_type:
+            ct = guess_type(attachment.name)[0]
+            content_type = ct if ct else ''
+
+        self.data['files'].append(
+            ('attachment', (name, attachment, content_type)))
 
     def add_inline(self, inline):
         """Add inline
 
         Args
-            inline: The inline data
+            inline: File Inline
         """
-        pass
+        if not self.data.get('files'):
+            self.data['files'] = []
+
+        self.data['files'].append(('inline', inline))
 
     def add_tag(self, tag):
         """Add tag
