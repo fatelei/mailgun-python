@@ -44,9 +44,12 @@ class MailgunClient(object):
             NotFoundException: The url isn't existed.
             ServerErrorsException: The server has some errors occured.
         """
+        files = parameters.pop('files', None)
+
         try:
             func = getattr(requests, method)
-            resp = func(url, auth=("api", self.api_key), data=parameters)
+            resp = func(url, auth=("api", self.api_key), data=parameters,
+                        files=files)
             return self.response(resp)
         except Exception as e:
             raise e
